@@ -22,10 +22,6 @@ public class TypeTestLogic {
     public void start() {
         System.out.println("Welcome to the TypingTest");
         started();
-        Watch s = new Watch(this);
-        Thread t = new Thread(s);
-        t.start();
-        System.out.println(s.getX());
     }
 
     //getters and setters
@@ -58,6 +54,13 @@ public class TypeTestLogic {
         System.out.println("Input any character to start your test: ");
         start = scan.nextLine();
         if (!(start.isEmpty())) { //intellij suggested to change this from .equals to .isEmpty
+
+            //start the timer:
+            Watch s = new Watch(this);
+            Thread t = new Thread(s);
+            t.start();
+            System.out.println(s.getX());
+
             testObject();
             System.out.println(wordTest);
             userInput = scan.nextLine();

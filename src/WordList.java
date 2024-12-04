@@ -1,29 +1,15 @@
-/**
- * This class generates a random word list of 15 characters
- * from an existing word list
- *
- * @author Alex Wang
- */
-
-
 public class WordList {
-    /** The string representing the existing word list */
+    // Instance variables
     private String wordList;
-
-    /** The string representing the new random word list */
     private String wordTest;
 
-    /**
-     * Instantiates a WordList object/
-     * */
+    // Constructor
     public WordList() {
         wordList = "play,one,order,would,still,number,than,around,higher,less,know,less,power,through,number,could,we,take,against,stand,call,he,with,a,so,those,if,any,say,for,be,plan,each,give,which,face,first,increase,child,after,course,much,show,the,just,line,most,form,will,under,need,one,might,become,by,find,how,against,follow,all";
         wordTest = "";
     }
 
-    /**
-     * Getter method that returns the existing word list
-     * */
+    // Getter for the word list
     public String getWordList() {
         return wordList;
     }
@@ -65,7 +51,7 @@ public class WordList {
         }
     }
 
-    /** Getter method that returns the random word list of 15 characters */
+    // Getter for the random word test
     public String getWordTest() {
         return wordTest;
     }

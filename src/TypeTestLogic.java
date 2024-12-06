@@ -57,12 +57,15 @@ public class TypeTestLogic {
         start = scan.nextLine();
         if (!(start.isEmpty())) {//intellij suggested to change this from .equals to .isEmpty
             startTimer();
+
             testObject();
             System.out.println("Good luck!");
             System.out.println("===============================================================");
             System.out.println(wordTest);
             System.out.println("===============================================================");
             userInput = scan.nextLine();
+
+
             int milliseconds = s.getX();
             seconds = (double) milliseconds / 1000;
             if (!Objects.equals(userInput, "")) {

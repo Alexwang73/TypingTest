@@ -20,9 +20,11 @@ public class Watch implements Runnable {
         if (!startSequence.isEmpty()) { //intellij suggested we change this from .equals to .isEmpty
             condition = true;
         }
-        if (!info.equals((""))) {
-            condition = false;
-        }
+    }
+
+    //stop the timer
+    private void stopSequence() {
+        condition = false;
     }
 
     //thread for timer

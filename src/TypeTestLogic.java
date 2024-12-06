@@ -1,3 +1,4 @@
+import java.util.Objects;
 import java.util.Scanner;
 
 public class TypeTestLogic {
@@ -7,13 +8,19 @@ public class TypeTestLogic {
     private String start;
     private String wordTest;
     private String userInput;
+    private double seconds;
+    private Watch s;
+    private Thread t;
 
     //constructor
     public TypeTestLogic() {
         info = "";
         start = "";
         scan = new Scanner(System.in);
+        s = new Watch(this);
+        t = new Thread(s);
         wordTest = "";
+        seconds = 0;
     }
 
 
@@ -45,25 +52,23 @@ public class TypeTestLogic {
         mainMenuStart();
     }
 
-    public void printStats() {
-        System.out.println("Good job!");
-        System.out.println("Your wpm is ");
-    }
-
     private void mainMenuStart() {
         System.out.println("Input any character to start your test: ");
         start = scan.nextLine();
-        if (!(start.isEmpty())) { //intellij suggested to change this from .equals to .isEmpty
-
-            //start the timer:
-            Watch s = new Watch(this);
-            Thread t = new Thread(s);
-            t.start();
-            System.out.println(s.getX());
-
+        if (!(start.isEmpty())) {//intellij suggested to change this from .equals to .isEmpty
+            startTimer();
             testObject();
+            System.out.println("Good luck!");
+            System.out.println("===============================================================");
             System.out.println(wordTest);
+            System.out.println("===============================================================");
             userInput = scan.nextLine();
+            int milliseconds = s.getX();
+            seconds = (double) milliseconds / 1000;
+            if (!Objects.equals(userInput, "")) {
+                TypeTest dynamiteType = new TypeTest(seconds , wordTest, userInput);
+                dynamiteType.printStats();
+            }
             //create an object to use for print stats
         }
     }
@@ -75,6 +80,15 @@ public class TypeTestLogic {
             test.generateWordTest();
             wordTest = test.getWordTest();
         }
+    }
+
+    public void startTimer() {
+        //start the timer:
+        /*Watch s = new Watch(this);
+        Thread t = new Thread(s);*/
+        t.start();
+        /*int milliseconds = s.getX();
+        seconds = (double) milliseconds / 1000; */
     }
 
 }

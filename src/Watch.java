@@ -3,6 +3,7 @@ public class Watch implements Runnable {
     private int x = 0;
     private boolean condition;
     private String startSequence;
+    //private String userInput;
 
     //create type test logic object
     TypeTestLogic info;
@@ -16,8 +17,11 @@ public class Watch implements Runnable {
 
     //check if condition is true for false in order to start the thread
     private void startSequence() {
-        if (startSequence != "") {
+        if (!startSequence.isEmpty()) { //intellij suggested we change this from .equals to .isEmpty
             condition = true;
+        }
+        if (!info.equals((""))) {
+            condition = false;
         }
     }
 
@@ -31,7 +35,6 @@ public class Watch implements Runnable {
                 throw new RuntimeException(e);
             }
             x++;
-            System.out.println(x);
         }
 
     }

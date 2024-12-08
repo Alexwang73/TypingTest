@@ -49,7 +49,8 @@ public class TypeTest {
      */
     public double rawWPM() {
         int length = userInput.length();
-        return ((double) length / 5) / timer;
+        double rawWpm = ((double) length / 5) / (timer / 60);
+        return Math.round(rawWpm * 100.0)/ 100.0;
     }
 
     /**
@@ -64,7 +65,8 @@ public class TypeTest {
      */
     public double wpm() {
         getCharacters();
-        return ((double) rightCharacters / 5) / timer;
+        double wpm = ((double) rightCharacters / 5) / (timer / 60);
+        return Math.round(wpm * 100.0)/ 100.0;
     }
 
     /**
@@ -105,11 +107,26 @@ public class TypeTest {
     }
 
     public void printStats() {
+        boolean wpmTrue;
         System.out.println("Good job!");
-        System.out.println("The time you took to type was " + timer + "!");
+        System.out.println("===============================================================");
+        System.out.println("The time you took to type was " + timer + " seconds!");
         System.out.println("Your wpm is " + wpm());
         System.out.println("Your raw wpm is " + rawWPM());
         System.out.println("Your accuracy is " + accuracy() + "%");
+        System.out.println("===============================================================");
+        if (wpm() < 75) {
+            wpmTrue = false;
+            System.out.println("You weren't fast enough to defuse the dynamite!");
+        } else {
+            wpmTrue = true;
+            System.out.println("You defused the dynamite!");
+        }
         System.out.println("Thanks for typing with us!");
+        if (wpmTrue == true) {
+            System.out.println("Play again to see if you can defuse the dynamite again!");
+        } else if (wpmTrue == false) {
+            System.out.println("Play again to try to defuse the dynamite!");
+        }
     }
 }

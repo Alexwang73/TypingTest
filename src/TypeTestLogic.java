@@ -27,7 +27,9 @@ public class TypeTestLogic {
 
     //game loop
     public void start() {
+        System.out.println("===============================================================");
         System.out.println("Welcome to the TypingTest");
+        System.out.println("===============================================================");
         started();
     }
 
@@ -41,6 +43,18 @@ public class TypeTestLogic {
         return info;
     }
 
+    public double getSeconds() {
+        return seconds;
+    }
+
+    public String getUserInput() {
+        return userInput;
+    }
+
+    public String getWordTest() {
+        return wordTest;
+    }
+
     //helper methods
     public void started() {
         System.out.print("Type in \"A\" for a 15 word test or \"B\" for a 30 word test: ");
@@ -49,6 +63,7 @@ public class TypeTestLogic {
             System.out.println("Please type in in the letter \"A\" for a 15 word test or the letter \"B\" for a 30 word test, please keep in mind the letters are case sensitive!");
             info = scan.nextLine();
         }
+        System.out.println("===============================================================");
         mainMenuStart();
     }
 
@@ -56,23 +71,26 @@ public class TypeTestLogic {
         System.out.println("Input any character to start your test: ");
         start = scan.nextLine();
         if (!(start.isEmpty())) {//intellij suggested to change this from .equals to .isEmpty
-            startTimer();
-
+            t.start();
+            s.startSequence();
             testObject();
+
             System.out.println("Good luck!");
             System.out.println("===============================================================");
             System.out.println(wordTest);
             System.out.println("===============================================================");
+
             userInput = scan.nextLine();
+            s.stopSequence();
 
+            seconds = s.getX();
 
-            int milliseconds = s.getX();
-            seconds = (double) milliseconds / 1000;
+            //create an object to use for print stats
             if (!Objects.equals(userInput, "")) {
                 TypeTest dynamiteType = new TypeTest(seconds , wordTest, userInput);
                 dynamiteType.printStats();
             }
-            //create an object to use for print stats
+
         }
     }
 
@@ -85,13 +103,5 @@ public class TypeTestLogic {
         }
     }
 
-    public void startTimer() {
-        //start the timer:
-        /*Watch s = new Watch(this);
-        Thread t = new Thread(s);*/
-        t.start();
-        /*int milliseconds = s.getX();
-        seconds = (double) milliseconds / 1000; */
-    }
 
 }

@@ -12,18 +12,14 @@ public class Watch implements Runnable {
         info = ttl;
         condition = false;
         startSequence = info.getStart();
-        startSequence();
     }
 
     //check if condition is true for false in order to start the thread
-    private void startSequence() {
-        if (!startSequence.isEmpty()) { //intellij suggested we change this from .equals to .isEmpty
-            condition = true;
-        }
+    public void startSequence() {
+        condition = true;
     }
 
-    //stop the timer
-    private void stopSequence() {
+    public void stopSequence() {
         condition = false;
     }
 
@@ -32,7 +28,7 @@ public class Watch implements Runnable {
     public void run() {
         while (condition) {
             try {
-                Thread.sleep(100);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
